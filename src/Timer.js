@@ -13,8 +13,20 @@ class Timer extends Component {
 
 
 
-  //Your code here
+  //End of updating so need ref to see DOM
+componentDidUpdate() {
+    this.timer.current.style.color = '#'+Math.floor(Math.random()*16777215).toString(16);
+}
 
+//before render so no DOM, but props and state exist here
+shouldComponentUpdate(nextProps, nextState){
+    //only change color when time increases not on and rerender
+    //such as hitting + and - dont update the color of the count !!!
+    if (this.state.time === nextState.time) {
+      return false
+    }
+    return true
+}
 
 
   componentDidMount() {
